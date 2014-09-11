@@ -41,6 +41,8 @@ http://localhost:3030
 SELECT 1``
 example which should out 1
 
+<img src="http://www.postgis.us/images/node_postgis_express.png" /> <br />
+
 Examples
 ---------
 For Plain Text you can output SVG for example or any text query:
