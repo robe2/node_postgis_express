@@ -1,4 +1,4 @@
-PostGIS Minimialist Express viewer for Node
+PostGIS Minimalist Express viewer for Node
 ====================
 
 Lightweight PostGIS query viewer built on Node
