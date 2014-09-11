@@ -1,0 +1,53 @@
+<html>
+    <head><title>Node.JS PostGIS Ad-hoc Viewer</title>
+    <link rel="stylesheet" type="text/css" href="css/x3dom.css" />
+    </head>
+    <body>
+     <div id="divform" style="float:left;width:50%">
+        <form>
+           
+            <b>Type</b><select id="content_type"><option value="text/plain">Plain</option><option value="image/png">PNG</option><option value="text/x3d">X3D</option></select> <br />
+            <b>SQL</b> <textarea id="txtsql" style="width:90%;height:200px">SELECT 1</textarea> <br />
+            <input type="button" value="Run query" onclick="showQuery()"/> <input type="button" value="Clear" onclick="clearOutput()"/>
+        </form>
+    
+        <div id="result" style="float:left;overflow:auto;width:100%">
+            <div id="divoutput"></div>
+        </div>
+    </div>
+    
+    <div style="float:right;width:50%;vertical-align:top;overflow:auto"><b>X3D Scene</b> <i>a</i> - bring into view <br />
+        <x3d width="600px" height="95%"  showStat='false' showLog='false'>
+            <scene>
+            <NavigationInfo type='"EXAMINE" "WALK" "FLY" "ANY"'/> 
+            </scene>
+        </x3d>
+    </div>
+   <script type="text/javascript">
+    var postgis_handler = "postgis_viewer?";
+    function showQuery() {
+          $.get(postgis_handler,  { sql: $('#txtsql').val(), content_type: $('#content_type').val() } ).done(
+               function (data) {
+                   if ($('#content_type').val().indexOf('image') > -1 ){ // our nodejs server outputs in base64 encoded so we can create image from it 
+                        $('#divoutput').prepend("<img src='" + data + "' />")
+                   } 
+                   else if ($('#content_type').val().indexOf('x3d') > -1  ){
+                        $("scene").prepend(data);
+                   }
+                   else {
+                        $("#divoutput").prepend(data);
+                   }
+                } ).error(function(xhr) { alert(xhr.responseText); } ) ;
+    }
+    
+    function clearOutput() {
+        $('#divoutput').html('');
+        $("scene").html("");
+    
+    }
+    </script>
+    
+    <script type="text/javascript" src="js/x3dom.js"></script>
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    </body>
+</html>
