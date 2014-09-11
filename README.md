@@ -10,6 +10,9 @@ utilizing PostGIS 2.0+,
  X3DOM http://www.x3dom.org/
 , JQuery http://jquery.com, and Node.JS
 
+Node.JS libraries - https://github.com/brianc/node-postgres-pure
+Express - http://expressjs.com/
+
 Requirements
 --------------
  1. PostGIS 2.0+ (PostGIS 2.1+ with SFCGAL is preferred).  
@@ -20,7 +23,7 @@ Requirements
 Installation
 -----------
 1. Extract
-2. edit the postgis_express.js (connString variable to point to your postgres databse)
+2. edit the postgis_express.js (connString variable to point to your postgress database)
 2. At OS shell prompt cd into the extracted folder
 3. Run (only need to do this once)
 ```
@@ -41,6 +44,16 @@ example which should out 1
 Examples
 ---------
 For Plain Text you can output SVG for example or any text query:
+
+#Raster Example
+Change to PNG (it usally can handle JPEG also)
+```
+SELECT ST_AsPNG(
+  ST_AsRaster(
+    ST_Buffer(
+        ST_GeomFromText('LINESTRING(50 50,150 150,150 50)'), 10,'join=bevel'), 
+        200,200,ARRAY['8BUI', '8BUI', '8BUI'], ARRAY[118,154,118], ARRAY[0,0,0]));
+```
 
 #SVG Example
 ```
