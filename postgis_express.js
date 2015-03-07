@@ -1,12 +1,12 @@
 var express = require('express');
 var pg = require('pg.js'); 
-var conString = "postgres://gisuser:whatever@localhost:5432/gisdb";
+global.settings = require('./Settings');
 var app = express();
 
 app.use(express.static(__dirname = 'public'));
 
 app.get('/postgis_viewer', function(req, res){
-  	var db = new pg.Client(conString);
+  	var db = new pg.Client(settings.conString);
   	var content_type = "text/plain";
 	
 	var sql = "";
@@ -60,5 +60,5 @@ app.get('/postgis_viewer', function(req, res){
 	});
 });
 
-app.listen(3030);
+app.listen(process.env.PORT || 3030);
 console.log('listening on 3030');
