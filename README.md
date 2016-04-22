@@ -22,24 +22,18 @@ Requirements
 
 Installation
 -----------
-1. Extract
-2. edit the postgis_express.js (connString variable to point to your postgress database)
-2. At OS shell prompt cd into the extracted folder
-3. Run (only need to do this once)
+1. Clone the repository `git clone https://github.com/robe2/node_postgis_express`
+2. Edit the file `settings.js` (`connString` variable should point to your postgres database)
+3. In your shell run (only need to do this once)
 ```
 npm install express
 npm install pg.js 
 ```
 
-4. Still in OS shell type: which should launch the web server
+4. Then type: `node postgis_express.js` which should launch the web server
 node postgis_express.js
 
-5. In a web browser go to:
-http://localhost:3030
-
-6. Run the ```
-SELECT 1``
-example which should out 1
+5. In a web browser go to: `http://localhost:3030`
 
 <img src="http://www.postgis.us/images/node_postgis_express.png" /> <br />
 
