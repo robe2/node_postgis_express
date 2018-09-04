@@ -23,7 +23,7 @@ Requirements
 Installation
 -----------
 1. Extract
-2. edit the postgis_express.js (connString variable to point to your postgress database)
+2. edit the Settings.js (connString variable to point to your postgress database)
 2. At OS shell prompt cd into the extracted folder
 3. Run (only need to do this once)
 ```
